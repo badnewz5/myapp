@@ -1,0 +1,85 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'include/app.html' %}
+{% include 'include/userheader.html' %}
+{% include 'include/dashboardslide.html' %}
+{% include 'include/message.html' %}
+{% include 'include/userprofile.html' %}
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li><a href="#Education" data-toggle="tab"> Edit Education Qulification</a></li>
+              
+            </ul>
+           
+                
+                
+              </div>
+              
+              
+              <div class="tab-pane" id="Education">
+                <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+                  {% csrf_token %} 
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-9">
+                      {{form.school_name|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-4">
+                        {{form.start_date|as_crispy_field }}
+                    </div>
+                    <label for="inputName" class="col-sm-1 control-label"></label>
+
+                    <div class="col-sm-4">
+                        {{form.end_date|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-9">
+                      {{form.course_name|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn-primary" >Update</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              
+              
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  
+  {% include 'include/footer.html' %}
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>

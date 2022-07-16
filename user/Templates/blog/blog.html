@@ -1,0 +1,79 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'include/app.html' %}
+{% include 'include/userheader.html' %}
+{% include 'include/dashboardslide.html' %}
+{% include 'include/userprofile.html' %}
+
+    <div class="col-md-9">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#activity" data-toggle="tab">My Blog</a></li>
+          <li><a href="#Skills" data-toggle="tab">Add My Blog</a></li>
+          
+        </ul>
+        <div class="tab-content">
+          <div class="active tab-pane" id="activity">
+            {% for blog in blogs %}
+            <div class="post">
+              <div class="user-block">
+                <img class="img-circle img-bordered-sm" src="../../../media/blog/bg-title-01.jpg" alt="user image">
+                    <span class="username">
+                      <a href="#">{{blog.name}}</a>
+                      <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                    </span>
+                <span class="description">- {{blog.date}}</span>
+              </div>
+              <span class="description" style="color:coral; font-size:large;">Description:</span>
+              <p style="text-align: justify;">
+                {{blog.description}}
+              </p>
+              
+              <div class="timeline-footer">
+                <a class="btn btn-danger btn-xs">Delete</a>
+                <a class="btn btn-primary btn-xs" href="{% url 'edit_blog' blog.id %}">Update</a>
+              </div>
+              
+            </div>
+            {% endfor %}
+                
+            <div class="post">
+                
+
+            </div>
+            <!-- /.post -->
+          </div>
+          <div class="tab-pane" id="Skills">
+            <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+              {% csrf_token %} 
+              
+              <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-9">
+                  {{form.name|as_crispy_field }}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-9">
+                  {{form.description|as_crispy_field }}
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="inputSkills" class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-9">
+                  {{form.image|as_crispy_field }}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn-primary" >Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>

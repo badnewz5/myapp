@@ -1,0 +1,93 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'include/app.html' %}
+{% include 'include/userheader.html' %}
+{% include 'include/dashboardslide.html' %}
+{% include 'include/message.html' %}
+{% include 'include/userprofile.html' %}
+
+       
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">My SKills & Knowledge</a></li>
+              <li><a href="#Skills" data-toggle="tab"> Add SKills & Knowledge</a></li>
+              
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                <!-- Post -->
+                <div class="post">
+                  <table class="table table-bordered">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Skills</th>
+                      
+                      <th style="width: 40px">Action</th>
+                    </tr>
+                    {% for all in alls %}
+                    <tr>
+                      <td>{{all.id}}.</td>
+                      <td>{{all.name}}</td>
+                      <td>
+                        <a class="btn btn-primary btn-xs" href="{% url 'edit_skill_page' all.id %}">Update</a>
+                      </td>
+                      <td>
+                        <a class="btn btn-danger btn-xs" href="{% url 'delete_skill_page' all.id %}">Delete</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+       
+                </div>
+                
+                
+              </div>
+              
+              
+              <div class="tab-pane" id="Skills">
+                <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+                  {% csrf_token %} 
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-9">
+                      {{form.name|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn-primary" >Save</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              
+              
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  {% include 'include/footer.html' %}
+</div>
+
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>

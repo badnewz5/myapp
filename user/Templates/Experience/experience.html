@@ -1,0 +1,128 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% include 'include/app.html' %}
+{% include 'include/userheader.html' %}
+{% include 'include/dashboardslide.html' %}
+{% include 'include/userprofile.html' %}
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">My Work Experience</a></li>
+              <li><a href="#Experience" data-toggle="tab">Add Work Experience</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="activity">
+                {% for post in posts %}
+                <div class="post">
+                  <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="{{ user.profile.image.url }}" alt="user image">
+                        <span class="username">
+                          <a href="#">{{post.title}}</a> | <a href="#">{{post.company_name}}</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">{{post.jobtype}} - {{post.start_date}} | {{post.end_date}}</span>
+                  </div>
+                  <span class="description" style="color:coral; font-size:large;">Description:</span>
+                  <p style="text-align: justify;">
+                    {{post.description}}
+                  </p>
+                  
+                  <div class="timeline-footer">
+                    <a class="btn btn-danger btn-xs">Delete</a>
+                    <a class="btn btn-primary btn-xs" href="{% url 'edite_experience_page' post.id %}">Update</a>
+                  </div>
+                  
+                </div>
+                {% endfor %}
+                    
+                <div class="post">
+                    
+
+                </div>
+                <!-- /.post -->
+              </div>
+              <div class="tab-pane" id="Experience">
+                <form class="form-horizontal" action="#" method="post">
+                    {% csrf_token %} 
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-4">
+                        {{form.title|as_crispy_field }}
+                    </div>
+                    <label for="inputName" class="col-sm-1 control-label"></label>
+
+                    <div class="col-sm-4">
+                        {{form.company_name|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-9">
+                        {{form.jobtype|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-4">
+                        {{form.start_date|as_crispy_field }}
+                    </div>
+                    <label for="inputName" class="col-sm-1 control-label"></label>
+
+                    <div class="col-sm-4">
+                        {{form.end_date|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-9">
+                        {{form.address|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-9">
+                        {{form.description|as_crispy_field }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  {% include 'include/footer.html' %}
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
